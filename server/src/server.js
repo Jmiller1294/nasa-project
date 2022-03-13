@@ -1,12 +1,14 @@
 const http = require('http');
+
+require('dotenv').config();
+
 const mongoose = require('mongoose');
 const app = require('./app');
 const { loadPlanetData } = require('./models/planets.model');
 const { loadLaunchData } = require('./models/launches.model');
 
 const PORT = process.env.PORT || 8000;
-
-const MONGO_URL = 'mongodb+srv://nasa-api:62AzPHTEljwMZQsA@nasacluster.zolu6.mongodb.net/nasa?retryWrites=true&w=majority';
+const MONGO_URL = process.env.MONGO_URL;
 const server = http.createServer(app);
 
 mongoose.connection.once('open', () => {
